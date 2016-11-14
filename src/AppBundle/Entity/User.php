@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @JMS\ExclusionPolicy("none")
  */
 class User
 {
@@ -18,6 +20,7 @@ class User
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Groups({"list", "detail"})
      */
     private $id;
 
@@ -25,6 +28,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="login", type="string", length=50)
+     * @JMS\Groups({"list", "detail"})
      */
     private $login;
 
@@ -32,6 +36,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="password_hash", type="string", length=255)
+     * @JMS\Groups({"list", "detail"})
      */
     private $passwordHash;
 
@@ -39,6 +44,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @JMS\Groups({"list", "detail"})
      */
     private $name;
 
@@ -46,6 +52,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     * @JMS\Groups({"list", "detail"})
      */
     private $createdAt;
 

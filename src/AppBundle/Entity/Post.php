@@ -3,12 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ *
+ * @JMS\ExclusionPolicy("none")
  */
 class Post
 {
@@ -18,6 +21,7 @@ class Post
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @JMS\Groups({"list", "detail"})
      */
     private $id;
 
@@ -25,6 +29,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @JMS\Groups({"list", "detail"})
      */
     private $title;
 
@@ -32,6 +37,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="image_full_url", type="string", length=255)
+     * @JMS\Groups({"list", "detail"})
      */
     private $imageFullUrl;
 
@@ -39,6 +45,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="image_thumb_url", type="string", length=255)
+     * @JMS\Groups({"list", "detail"})
      */
     private $imageThumbUrl;
 
@@ -46,6 +53,7 @@ class Post
      * @var int
      *
      * @ORM\Column(name="user_id", type="integer")
+     * @JMS\Groups({"list", "detail"})
      */
     private $userId;
 
@@ -53,6 +61,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
+     * @JMS\Groups({"list", "detail"})
      */
     private $createdAt;
 
@@ -60,6 +69,7 @@ class Post
      * @var int
      *
      * @ORM\Column(name="views", type="integer")
+     * @JMS\Groups({"list", "detail"})
      */
     private $views;
 

@@ -1,0 +1,30 @@
+parameters:
+    listener.exceptions.class:          AppBundle\Listener\ExceptionListener
+    listener.json_request_body.class:   AppBundle\Listener\JsonRequestBodyListener
+    listener.json_response_body.class:  AppBundle\Listener\JsonResponseBodyListener
+    listener.json_response_body.serialize_null: true
+
+services:
+    # Global exception handler
+    listener.exceptions:
+        class: "%listener.exceptions.class%"
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+        calls:
+            - [setLogger, ["@logger"]]
+
+    # Parse request body is application/json content type
+    listener.json_request_body:
+        class: "%listener.json_request_body.class%"
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 10 }
+
+
+    # Provides the @JsonResponse annotation for controller actions to simply return php datastructures
+    listener.json_response_body:
+        class: "%listener.json_response_body.class%"
+        arguments: ["@service_container", "%listener.json_response_body.serialize_null%"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+

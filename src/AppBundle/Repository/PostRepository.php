@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getPosts($filter, array $params = null)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('p');
+        $qb->from('AppBundle:Post', 'p');
+        $qb->orderBy('p.createdAt', 'ASC');
+        return $qb;
+    }
 }
