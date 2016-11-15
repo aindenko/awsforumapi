@@ -1,8 +1,4 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
-
-#restful_services:
-#    resource: "@AppBundle/Resources/config/routing.yml"
-#    type:     rest
-#    prefix:   /api/v1
+    prefix:   /api/v1

@@ -22,11 +22,10 @@ class Token
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="user_id", type="integer")
-     */
-    private $userId;
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true, nullable=false)
+     **/
+    private $user;
 
     /**
      * @var string
@@ -53,28 +52,17 @@ class Token
         return $this->id;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
-     * @return Token
-     */
-    public function setUserId($userId)
+
+    public function setUser($user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
 
         return $this;
     }
 
-    /**
-     * Get userId
-     *
-     * @return int
-     */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**

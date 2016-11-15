@@ -50,12 +50,10 @@ class Post
     private $imageThumbUrl;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="user_id", type="integer")
-     * @JMS\Groups({"list", "detail"})
-     */
-    private $userId;
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true, nullable=false)
+     **/
+    private $user;
 
     /**
      * @var \DateTime
@@ -156,28 +154,16 @@ class Post
         return $this->imageThumbUrl;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
-     * @return Post
-     */
-    public function setUserId($userId)
+    public function setUser($user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
 
         return $this;
     }
 
-    /**
-     * Get userId
-     *
-     * @return int
-     */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
