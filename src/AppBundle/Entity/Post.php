@@ -29,7 +29,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
-     * @JMS\Groups({"list", "detail"})
+     * @JMS\Groups({"list",})
      */
     private $title;
 
@@ -37,7 +37,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="image_full_url", type="string", length=255)
-     * @JMS\Groups({"list", "detail"})
+     * @JMS\Groups({"detail"})
      */
     private $imageFullUrl;
 
@@ -67,7 +67,7 @@ class Post
      * @var int
      *
      * @ORM\Column(name="views", type="integer")
-     * @JMS\Groups({"list", "detail"})
+     * @JMS\Groups({"detail"})
      */
     private $views;
 

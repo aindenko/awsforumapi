@@ -19,8 +19,12 @@ class AuthController extends Controller
     {
         $login = $request->get('login');
         $password = $request->get('password');
+        if(!$login or !$password){
+            throw new HttpException('400', 'Please check input parameters');
+        }
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('login'=>$login));
         if(!password_verify($password, $user->getPasswordHash())) {
+            $this->get('logger')->warning('Incorrect password for user ' . $login);
             throw new HttpException('400', 'Incorrect password');
         }
         //generate APiKey and write to table
@@ -33,6 +37,8 @@ class AuthController extends Controller
             $em = $this->get('doctrine')->getManager();
             $em->persist($token);
             $em->flush();
+
+            $this->get('logger')->debug('Api key regenerated for ' . $login);
         }
         return array('X-Auth'=> $token->getHash());
     }

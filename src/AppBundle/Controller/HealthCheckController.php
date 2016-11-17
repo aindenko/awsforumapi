@@ -16,6 +16,6 @@ class HealthCheckController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return 'I`m alive';
+        return ['status'=>'I`m alive'];
     }
 }
