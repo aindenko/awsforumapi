@@ -1,0 +1,74 @@
+# this is an AWS Forum API
+swagger: '2.0' info:
+  title: AWS Forum API
+  description: My desc
+  version: "1.0.0"
+# the domain of the service
+host: "example.com"
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /api/v1 produces:
+  - application/json paths:
+  /posts:
+    get:
+      summary: Posts
+      description: |
+        Returns posts of AWS posts Api
+      parameters:
+        - name: limit
+          in: query
+          description: Limit results.
+          required: false
+          type: number
+          format: integer
+        - name: offset
+          in: query
+          description: Offset.
+          required: false
+          type: number
+          format: integer
+      tags:
+        - Posts
+      responses:
+        200:
+          description: An array of posts
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Post'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error' definitions:
+  Post:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Post Id
+      title:
+        type: string
+        description: Description of product.
+      imageFullUrl:
+        type: string
+        description: URL to full image(appeared only at detail request).
+      imageThumbUrl:
+        type: string
+        description: URL to thumb image.
+      views:
+        type: integer
+        description: Post views.
+      createdAt:
+        type: string
+        description: Created at
+  Error:
+    type: object
+    properties:
+      errorCode:
+        type: integer
+        format: int32
+        description: HTTP status code
+      errorMessage:
+        type: string
