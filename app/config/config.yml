@@ -67,15 +67,6 @@ sensio_framework_extra:
     router:
         annotations: true
 
-aws:
-    version: latest
-    region: eu-west-1
-    credentials:
-        key: AKIAJTSVFYMRSYY7SQYA
-        secret: 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
-    S3:
-        version: '2006-03-01'
-
 services:
     a_service:
         class: Aws\Credentials\Credentials
