@@ -2,10 +2,17 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class PostControllerTest extends WebTestCase
 {
+
+    public function setUp()
+    {
+        $this->loadFixtures(array(
+            'AppBundle\Tests\Fixtures\AppExistsPostsFixture',
+        ));
+    }
 
     public function test401()
     {
@@ -28,11 +35,14 @@ class PostControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/api/v1/posts',array(),array(),array('HTTP_X-Auth' => 'Hash'));
+        $expextedRes  = <<<EOT
+{"_metadata":{"totalCount":2,"limit":10,"offset":0,"totalViews":"22"},"posts":[{"id":1,"title":"Test title","image_thumb_url":"http:\/\/example.com\/1_thumb.jpg","created_at":"2016-01-01T00:00:00+0000"},{"id":2,"title":"Test title","image_thumb_url":"http:\/\/example.com\/2_thumb.jpg","created_at":"2016-01-01T00:00:00+0000"}]}
+EOT;
 
-        echo  $client->getResponse()->getContent();
+        $crawler = $client->request('GET', '/api/v1/posts',array(),array(),array('HTTP_X-Auth' => 'Hash'));
+        
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('status', $client->getResponse()->getContent());
+        $this->assertEquals($expextedRes, $client->getResponse()->getContent());
     }
 
 
