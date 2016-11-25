@@ -3,6 +3,9 @@ language: php
 php:
     - 7.0
 
+env:
+    - SYMFONY_DEPRECATIONS_HELPER=weak
+
 before_script:
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - composer install
