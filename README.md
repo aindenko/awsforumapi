@@ -1,9 +1,7 @@
 
 AWS Forum API
 ========================
-.. image:: https://travis-ci.org/aindenko/awsforumapi.svg?branch=master
-    :target: https://travis-ci.org/aindenko/awsforumapi
-
+![alt tag](https://travis-ci.org/aindenko/awsforumapi.svg?branch=master)
 
 Small REST API built on Symfony 3 project.
 Requires PHP7.0 and S3 bucket.
