@@ -1,14 +1,11 @@
 language: php
 
 php:
-
     - 7.0
 
 before_script:
-
     - cp app/config/parameters.yml.dist app/config/parameters.yml
     - composer install
 
 script:
-
     - phpunit -c app
