@@ -1,3 +1,5 @@
+https://travis-ci.org/aindenko/awsforumapi.svg?branch=master
+
 AWS Forum API
 ========================
 
