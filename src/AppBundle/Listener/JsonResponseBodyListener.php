@@ -9,15 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class JsonResponseBodyListener implements EventSubscriberInterface
 {
-    protected $container;
-    protected $serializeNull;
+    use ContainerAwareTrait;
 
-    public function __construct(ContainerInterface $container, $serializeNull)
+    public function __construct($serializeNull)
     {
-        $this->container = $container;
         $this->serializeNull = $serializeNull;
     }
 

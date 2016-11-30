@@ -23,8 +23,10 @@ services:
     # Provides the @JsonResponse annotation for controller actions to simply return php datastructures
     listener.json_response_body:
         class: "%listener.json_response_body.class%"
-        arguments: ["@service_container", "%listener.json_response_body.serialize_null%"]
+        arguments: [ "%listener.json_response_body.serialize_null%"]
         tags:
             - { name: kernel.event_subscriber }
+        calls:
+            - [setContainer, ["@service_container"]]
 
 
