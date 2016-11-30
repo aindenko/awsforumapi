@@ -24,7 +24,8 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/serializer-bundle": "^1.0",
         "doctrine/doctrine-migrations-bundle": "^1.2",
-        "aws/aws-sdk-php-symfony": "^1.2"
+        "aws/aws-sdk-php-symfony": "^1.2",
+        "satooshi/php-coveralls": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6",
