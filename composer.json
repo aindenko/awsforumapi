@@ -1,8 +1,8 @@
 {
-    "name": "symfony/framework-standard-edition",
+    "name": "aindenko/awsforumapi",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "description": "AWS Forum Api",
     "autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
@@ -23,8 +23,6 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/serializer-bundle": "^1.0",
-        "nelmio/api-doc-bundle": "^2.4",
-        "friendsofsymfony/http-cache-bundle": "^1.0",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "aws/aws-sdk-php-symfony": "^1.2"
     },
