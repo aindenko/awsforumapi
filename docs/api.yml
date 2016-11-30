@@ -1,5 +1,6 @@
 # this is an AWS Forum API
-swagger: '2.0' info:
+swagger: '2.0'
+info:
   title: AWS Forum API
   description: My desc
   version: "1.0.0"
@@ -8,8 +9,16 @@ host: "example.com"
 # array of all schemes that your API supports
 schemes:
   - https
+securityDefinitions:
+  apiKey:
+    name: X-Auth
+    type: apiKey
+    in: header
+    description: API Key
 # will be prefixed to all paths
 basePath: /api/v1
+security:
+  - apiKey: []
 produces:
   - application/json
 paths:
