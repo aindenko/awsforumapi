@@ -40,7 +40,7 @@ class PostControllerTest extends WebTestCase
 EOT;
 
         $crawler = $client->request('GET', '/api/v1/posts',array(),array(),array('HTTP_X-Auth' => 'Hash'));
-        
+
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertEquals($expextedRes, $client->getResponse()->getContent());
     }

@@ -9,8 +9,10 @@ host: "example.com"
 schemes:
   - https
 # will be prefixed to all paths
-basePath: /api/v1 produces:
-  - application/json paths:
+basePath: /api/v1
+produces:
+  - application/json
+paths:
   /posts:
     get:
       summary: Posts
@@ -41,7 +43,8 @@ basePath: /api/v1 produces:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error' definitions:
+            $ref: '#/definitions/Error'
+definitions:
   Post:
     type: object
     properties:

@@ -83,11 +83,11 @@ class JsonResponseBodyListener implements EventSubscriberInterface
             return false;
         }
 
-        if (!is_object($user = $token->getUser())) {
+        if (!is_object($token->getUser())) {
             // e.g. anonymous authentication
             return false;
         }
 
-        return $this->container->get('security.authorization_checker')->isGranted(array('ROLE_ADMIN', 'ROLE_EMPLOYEE'));
+        return $this->container->get('security.authorization_checker')->isGranted(array());
     }
 }

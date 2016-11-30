@@ -36,7 +36,7 @@ class SecureListener implements EventSubscriberInterface
             $this->throwException($configuration);
         }
 
-        if (!is_object($user = $token->getUser())) {
+        if (!is_object($token->getUser())) {
             $this->throwException($configuration);
         }
 

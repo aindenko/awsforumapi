@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Controller;
 use AppBundle\Annotation\JsonResponse;
-use AppBundle\Entity\Token;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +18,7 @@ class AuthController extends Controller
     {
         $login = $request->get('login');
         $password = $request->get('password');
-        if(!$login or !$password){
+        if(!$login || !$password){
             throw new HttpException('400', 'Please check input parameters');
         }
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->findOneBy(array('login'=>$login));

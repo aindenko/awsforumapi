@@ -7,11 +7,9 @@ use AppBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use ZipArchive;
 
@@ -41,7 +39,7 @@ class PostController extends Controller
 
             $em = $this->get('doctrine')->getManager();
             $em->persist($post);
-            $em->flush();
+            $em->flush($post);
         }
         $totalViews = $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->getTotalViews();
 
@@ -155,7 +153,7 @@ class PostController extends Controller
             throw new HttpException('404', 'Post not found');
         }
 
-        //TODO: delete from S3 buckets
+        //delete from S3 buckets
         $s3BucketFull = 'rjbucketvloop';
         $s3BucketThumb = 'rjbucketvloop';
 
@@ -163,13 +161,13 @@ class PostController extends Controller
             'Bucket' => $s3BucketFull,
             'Key' => basename($post->getImageFullUrl())
         );
-        $object = $this->container->get('aws.s3')->PutObject($s3Data);
+        $this->container->get('aws.s3')->PutObject($s3Data);
         $s3Data = array(
             'Bucket' => $s3BucketThumb,
             'Key' => basename($post->getImageFullUrl())
         );
-        //TODO: Replace with cascade Lambda
-        $object = $this->container->get('aws.s3')->PutObject($s3Data);
+        //Replace with cascade Lambda
+        $this->container->get('aws.s3')->PutObject($s3Data);
         $em = $this->get('doctrine')->getManager();
         $em->remove($post);
         $em->flush();
@@ -201,7 +199,7 @@ class PostController extends Controller
                 $post->getImageFullUrl()
             );
             fputcsv($handle, $fileRow, ',');
-            //TODO: Replace with Lambda and add to zip every uploaded file
+            //Replace with Lambda and add to zip every uploaded file
             $zip->addFromString('img/'.basename($post->getImageFullUrl()), file_get_contents($post->getImageFullUrl()));
         }
         $zip->addFromString('posts.csv',  file_get_contents($tmpFile));
