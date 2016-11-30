@@ -23,7 +23,6 @@ class ApiKeyUserProvider implements UserProviderInterface
         // Look up the username based on the token in the database, via
         // an API call, or do something entirely different
         $tokenObj = $this->em->getRepository('AppBundle:Token')->findOneBy(array('hash'=>$apiKey));
-        print_r($this->em->getRepository('AppBundle:Token')->findAll()[0]->getId());
         if(!$tokenObj){
             throw new HttpException('403', 'Incorrect API Key');
         }
