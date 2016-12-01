@@ -5,7 +5,6 @@ AWS Forum API
 [![Build Status](https://travis-ci.org/aindenko/awsforumapi.svg?branch=master)](https://travis-ci.org/aindenko/awsforumapi)
 [![Coverage Status](https://coveralls.io/repos/github/aindenko/awsforumapi/badge.svg?branch=code-review)](https://coveralls.io/github/aindenko/awsforumapi?branch=code-review)
 
-
 Small REST API built on Symfony 3 project.
 Requires PHP7.0 and S3 bucket.
 
