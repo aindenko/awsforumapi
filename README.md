@@ -1,9 +1,8 @@
 
 AWS Forum API
 ========================
-.. image:: https://travis-ci.org/aindenko/awsforumapi.svg?branch=master
-    :target: https://travis-ci.org/aindenko/awsforumapi
-    
+
+[![Build Status](https://travis-ci.org/aindenko/awsforumapi.svg?branch=master)](https://travis-ci.org/aindenko/awsforumapi)
 [![Coverage Status](https://coveralls.io/repos/github/aindenko/awsforumapi/badge.svg?branch=code-review)](https://coveralls.io/github/aindenko/awsforumapi?branch=code-review)
 
 
