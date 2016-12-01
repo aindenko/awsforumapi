@@ -21,7 +21,8 @@ framework:
         engines: ['twig']
     default_locale: "%locale%"
     trusted_proxies: ~
-    session: ~
+    session:
+        name: MYSESSION
     fragments: ~
     http_method_override: true
 

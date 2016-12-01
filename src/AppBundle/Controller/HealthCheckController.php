@@ -10,6 +10,7 @@ use AppBundle\Annotation\JsonResponse;
 class HealthCheckController extends Controller
 {
     /**
+     * @Method({"GET"})
      * @Route("/_healthcheck")
      * @JsonResponse(200)
      */
